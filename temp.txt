@@ -1,0 +1,62 @@
+function z_algorithm(string):
+  n = length(string)
+  z_array = [0] * n
+ 
+  // initialize the first element of z_array
+  z_array[0] = n
+ 
+  // initialize variables
+  l = 0
+  r = 0
+ 
+  // iterate through the string
+  for i from 1 to n-1:
+    // Case 1: i is outside the current Z-box
+    if i > r:
+      // compare string[i] with string[0...n-i] to find Z-box length
+      j = 0
+      while i+j < n and string[i+j] == string[j]:
+        j += 1
+     
+      // set the value of Z-box length in z_array[i]
+      z_array[i] = j
+     
+      // update Z-box boundaries
+      l = i
+      r = i + j - 1
+       
+    // Case 2: i is inside the current Z-box
+    else:
+      // calculate the equivalent index in the Z-box
+      k = i - l
+     
+      // Case 2a: value of z_array[k] is less than the remaining Z-box length
+      if z_array[k] < r - i + 1:
+        // set the value of z_array[i] to z_array[k]
+        z_array[i] = z_array[k]
+     
+      // Case 2b: value of z_array[k] is greater than or equal to the remaining Z-box length
+      else:
+        // compare string[r+1] with string[r-i+1...n-i] to find Z-box length
+        j = r + 1
+        while j < n and string[j] == string[j-i]:
+          j += 1
+       
+        // set the value of Z-box length in z_array[i]
+        z_array[i] = j - i
+       
+        // update Z-box boundaries
+        l = i
+        r = j - 1
+ 
+  return z_array
+
+
+// It will check if “b” contains “a” as a substring
+  String a, b;
+  String_to_be_checked a+’~’+b
+  Arr = z_algorithm(string_to_be_checked)
+    if(Arr.includes(b.length))
+      return true;
+    Else
+      return false;

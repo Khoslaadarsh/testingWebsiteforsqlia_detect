@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQLIA testing</title>
+</head>
+<body>
+     <div id="logincard">
+        <div id="card-content">
+            <div id="card-title">
+                <h2>LOGIN</h2>
+                <div class="underline-title"></div>
+            </div>
+            <form method="post" class="form" action="/">
+                <label for="username" style="padding-top: 13px">
+                    &nbsp; Username
+                </label>
+                <input id="username" type="text" name="username" required />
+                <label for="password" style="padding-top: 22px">
+                    &nbsp; Password
+                </label>
+                <input id="password" class="form-content" type="text" name="password" required />
+
+                <input type="submit"/>
+            </form>
+            {{#if flag}}
+            <div><h4>Results</h4><table><thead><td>Username</td><td>Password</td></thead><tbody>{{#each users as |user|}}<tr><td>{{user.username}}</td><td>{{user.password}}</td></tr>{{/each}}</tbody></table></div>
+            {{else}}
+            <div><h4>Nothing</h4></div>
+            {{/if}}
+            {{#if flag}}
+                <form action="/logout" method="post">
+                    <button>Logout</button>
+                </form>
+            {{/if}}
+        </div>
+    </div>
+</body>
+</html>
